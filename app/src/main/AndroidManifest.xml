@@ -28,7 +28,6 @@
         <activity
             android:name="com.swensonhe.weather.ui.HostActivity"
             android:exported="true"
-            android:screenOrientation="locked"
             android:theme="@style/Theme.weather.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"

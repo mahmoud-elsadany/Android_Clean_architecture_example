@@ -178,11 +178,13 @@ class LandingPageFragment : BaseFragment(), ICityClickListener {
 
         binding.searchIv.setOnClickListener {
             showHideView(binding.searchLayout)
+            showHideView(binding.searchIv)
             searching()
         }
 
         binding.backIv.setOnClickListener {
             showHideView(binding.searchLayout)
+            showHideView(binding.searchIv)
         }
 
         binding.searchListCollapseRl.setOnClickListener {
@@ -225,6 +227,7 @@ class LandingPageFragment : BaseFragment(), ICityClickListener {
     override fun onCityClickListener(city: cities_responseItem) {
         //do action to fetch city data
         showHideView(binding.searchLayout)
+        showHideView(binding.searchIv)
         landingPageVM.getCityWeather(BuildConfig.WEATHER_API_KEY, cityName = city.name)
     }
 

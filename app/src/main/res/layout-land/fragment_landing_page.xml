@@ -32,30 +32,22 @@
 
                 <RelativeLayout
                     android:id="@+id/top_layout"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="80dp">
 
                     <TextView
                         android:id="@+id/time_tv"
                         style="@style/semibold_text_style"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:gravity="center"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         tools:text="9:12 AM" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/search_iv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="21dp"
-                        android:gravity="center"
-                        android:src="@drawable/search" />
 
 
                 </RelativeLayout>
@@ -308,42 +300,52 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/search_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginEnd="21dp"
+                    android:gravity="center"
+                    android:src="@drawable/search" />
 
                 <RelativeLayout
                     android:id="@+id/search_layout"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:visibility="gone"
-                    tools:visibility="visible"
-                    android:background="@drawable/search_layout_bg">
+                    android:layout_marginStart="150dp"
+                    android:layout_toEndOf="@+id/top_layout"
+                    tools:visibility="visible">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/back_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="28dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:padding="10dp"
                         android:layout_marginEnd="14dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/full_arrow_left" />
+                        android:src="@drawable/full_arrow_right" />
 
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/search_et"
-                        android:layout_toEndOf="@+id/back_iv"
+                        android:layout_toStartOf="@+id/back_iv"
                         style="@style/regular_text_style"
                         android:textSize="16sp"
                         android:hint="@string/search"
                         android:padding="15dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
                         android:maxLength="20"
                         android:inputType="text"
-                        android:background="@drawable/search_edittext_bg"
+                        android:background="@drawable/search_edittext_land_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -352,13 +354,13 @@
                         android:id="@+id/clear_text_iv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@+id/search_et"
                         android:padding="10dp"
                         android:visibility="gone"
                         tools:visibility="visible"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="28dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="-50dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/close" />
 
@@ -371,6 +373,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         tools:listitem="@layout/item_spinner"
+                        android:background="@drawable/search_list_layout_bg"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:layout_below="@+id/search_et"/>
 
@@ -379,6 +382,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:visibility="gone"
                         android:background="@drawable/collapse_button_bg"
                         android:layout_below="@+id/search_list_rv">
 
