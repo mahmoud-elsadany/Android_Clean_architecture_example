@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.swensonhe.common.model.landingpage.cities_responseItem
 import com.swensonhe.weather.databinding.ItemSpinnerBinding
 
 class SearchedCitiesAdapter (
     val context: Context,
-    private val allCities: List<String>,
+    private val allCities: ArrayList<cities_responseItem>,
     var mICityClickListener: ICityClickListener
 ) : RecyclerView.Adapter<SearchedCitiesAdapter.ViewHolder>() {
 
@@ -33,13 +34,16 @@ class SearchedCitiesAdapter (
 
     inner class ViewHolder(private val binding: ItemSpinnerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(city: String, context: Context) {
-            binding.cityNameTv.text = city
-            binding.countryNameTv.text = " - $city"
+        fun bind(obj: cities_responseItem, context: Context) {
+            binding.cityNameTv.text = obj.name
+            binding.countryNameTv.text = " - ${obj.country}"
+
+
+            itemView.setOnClickListener { mICityClickListener.onCityClickListener(obj) }
         }
     }
 }
 
 interface ICityClickListener {
-    fun onCityClickListener(city: String)
+    fun onCityClickListener(city: cities_responseItem)
 }

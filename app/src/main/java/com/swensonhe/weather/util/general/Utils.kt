@@ -60,7 +60,7 @@ object Utils {
     }
 
     fun getCurrentTime(localtime_epoch:Long):String{
-        return SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(localtime_epoch))
+        return SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(localtime_epoch*1000))
     }
 
     fun getCurrentDate(localtime_epoch:Long):String{

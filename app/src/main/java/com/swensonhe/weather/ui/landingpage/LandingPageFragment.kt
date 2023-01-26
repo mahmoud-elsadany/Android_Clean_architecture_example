@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.target.CustomTarget
+import com.swensonhe.common.model.landingpage.cities_responseItem
 
 import com.swensonhe.weather.R
 import com.swensonhe.weather.base.BaseFragment
@@ -107,7 +108,7 @@ class LandingPageFragment : BaseFragment(), ICityClickListener {
             ViewModelProvider(this, landingPageModelFactory)[LandingPageViewModel::class.java]
 
 
-        landingPageVM.getCityWeather(BuildConfig.WEATHER_API_KEY,"San Francisco")
+        landingPageVM.getCityWeather(BuildConfig.WEATHER_API_KEY, "San Francisco")
 
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -115,18 +116,21 @@ class LandingPageFragment : BaseFragment(), ICityClickListener {
                 landingPageVM.current_city_weather.collect {
 
                     binding.cityNameTv.text = it.location.name
-                    binding.todayWeatherFTv.text = "${it.current.temp_f} " + getString(R.string.fahrenheit)
+                    binding.todayWeatherFTv.text =
+                        "${it.current.temp_f} " + getString(R.string.fahrenheit)
                     binding.todayWindTv.text = "${it.current.wind_mph} " + getString(R.string.mph)
-                    binding.todayHumidityTv.text = "${it.current.humidity} " + getString(R.string.percentage)
+                    binding.todayHumidityTv.text =
+                        "${it.current.humidity} " + getString(R.string.percentage)
                     binding.todayWeatherDescTv.text = it.current.condition.text
                     binding.todayWeatherDescTv.text = it.current.condition.text
-                    binding.todayDateTv.text = Utils.getCurrentDate(it.location.localtime_epoch.toLong())
+                    binding.todayDateTv.text =
+                        Utils.getCurrentDate(it.location.localtime_epoch.toLong())
                     binding.timeTv.text = Utils.getCurrentTime(it.location.localtime_epoch.toLong())
 
-                  Glide.with(this@LandingPageFragment)
+                    Glide.with(this@LandingPageFragment)
                         .asBitmap()
-                        .load("https:"+it.current.condition.icon)
-                        .into(object : CustomTarget<Bitmap>(){
+                        .load("https:" + it.current.condition.icon)
+                        .into(object : CustomTarget<Bitmap>() {
                             override fun onResourceReady(
                                 resource: Bitmap,
                                 transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
@@ -143,15 +147,32 @@ class LandingPageFragment : BaseFragment(), ICityClickListener {
 
                         })
 
-                    binding.todayWeatherStatusTv.text =  "${it.current.temp_c} " + getString(R.string.degree)+" /${it.current.temp_f} " + getString(R.string.fahrenheit)
-                    binding.tomorrowWeatherStatusTv.text =  "${it.current.temp_c} " + getString(R.string.degree)+" /${it.current.temp_f} " + getString(R.string.fahrenheit)
-                    binding.fridayWeatherStatusTv.text =  "${it.current.temp_c} " + getString(R.string.degree)+" /${it.current.temp_f} " + getString(R.string.fahrenheit)
+                    binding.todayWeatherStatusTv.text =
+                        "${it.current.temp_c} " + getString(R.string.degree) + " /${it.current.temp_f} " + getString(
+                            R.string.fahrenheit
+                        )
+                    binding.tomorrowWeatherStatusTv.text =
+                        "${it.current.temp_c} " + getString(R.string.degree) + " /${it.current.temp_f} " + getString(
+                            R.string.fahrenheit
+                        )
+                    binding.fridayWeatherStatusTv.text =
+                        "${it.current.temp_c} " + getString(R.string.degree) + " /${it.current.temp_f} " + getString(
+                            R.string.fahrenheit
+                        )
 
                 }
 
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                landingPageVM.searched_cities.collect {
+                    setSearchList(it)
+                }
+
+            }
+        }
 
 
 
@@ -181,6 +202,7 @@ class LandingPageFragment : BaseFragment(), ICityClickListener {
 
                 if (text.length >= 3) {
                     //do search
+                    landingPageVM.getSearchedCities(BuildConfig.WEATHER_API_KEY, text.toString())
 
                 }
 
@@ -191,15 +213,19 @@ class LandingPageFragment : BaseFragment(), ICityClickListener {
         }
     }
 
+    private fun setSearchList(allCities: ArrayList<cities_responseItem>){
+        binding.searchListRv.adapter = SearchedCitiesAdapter(requireContext(), allCities, this@LandingPageFragment)
+    }
 
     override fun onBackPressed(): Boolean {
         requireActivity().finishAffinity()
         return false
     }
 
-    override fun onCityClickListener(city: String) {
+    override fun onCityClickListener(city: cities_responseItem) {
         //do action to fetch city data
-
+        showHideView(binding.searchLayout)
+        landingPageVM.getCityWeather(BuildConfig.WEATHER_API_KEY, cityName = city.name)
     }
 
 }
