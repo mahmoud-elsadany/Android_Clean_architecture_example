@@ -1,10 +1,18 @@
 package com.swensonhe.data.repository.landingpage
 
+import com.swensonhe.common.Outcome
+import com.swensonhe.common.model.landingpage.cities_response
+import com.swensonhe.common.model.landingpage.current_city_weather_response
 import com.swensonhe.data.model.BaseApiResponse
 import com.swensonhe.data.repository.DatabaseDataSource
 import com.swensonhe.data.repository.PreferenceDataSource
 import com.swensonhe.data.repository.RemoteDataSource
 import com.swensonhe.domain.repository.LandingPageRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class LandingPageRepositoryImpl @Inject constructor(
@@ -14,34 +22,35 @@ class LandingPageRepositoryImpl @Inject constructor(
 ) : LandingPageRepository, BaseApiResponse() {
 
 
-//    override suspend fun getMLModels(
-//        networkStatus: Boolean,
-//        appName: String
-//    ): Flow<Outcome<landingModelResponse>> {
-//        return flow {
-//            emit(Outcome.loading(true))
-//            val landingModelObj = safeApiCall { remoteDataSource.getMLModels(appName) }
-//            emit(landingModelObj)
-//            emit(Outcome.loading(false))
-//        }.catch {
-//            emit(Outcome.failure(it))
-//            emit(Outcome.loading(false))
-//        }.flowOn(Dispatchers.IO)
-//
-//
-//    }
+    override suspend fun getCityWeather(
+        key: String,
+        city_name: String
+    ): Flow<Outcome<current_city_weather_response>> {
+        return flow {
+            emit(Outcome.loading(true))
+            val landingModelObj = safeApiCall { remoteDataSource.getCityWeather(key, city_name) }
+            emit(landingModelObj)
+            emit(Outcome.loading(false))
+        }.catch {
+            emit(Outcome.failure(it))
+            emit(Outcome.loading(false))
+        }.flowOn(Dispatchers.IO)
+    }
 
-
-//    override suspend fun <T> saveLandingPageResponse(key: Preferences.Key<T>, value: T) {
-//        preferenceDataSource.putPreference(key, value)
-//    }
-//
-//    override suspend fun <T> getSavedLandingPageResponse(
-//        key: Preferences.Key<T>,
-//        defaultValue: T
-//    ): Flow<T> {
-//        return preferenceDataSource.getPreference(key, defaultValue)
-//    }
+    override suspend fun getCitySearch(
+        key: String,
+        search_text: String
+    ): Flow<Outcome<cities_response>> {
+        return flow {
+            emit(Outcome.loading(true))
+            val landingModelObj = safeApiCall { remoteDataSource.getCitySearch(key, search_text) }
+            emit(landingModelObj)
+            emit(Outcome.loading(false))
+        }.catch {
+            emit(Outcome.failure(it))
+            emit(Outcome.loading(false))
+        }.flowOn(Dispatchers.IO)
+    }
 
 
 }

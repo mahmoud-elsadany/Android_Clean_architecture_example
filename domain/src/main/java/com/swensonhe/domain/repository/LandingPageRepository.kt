@@ -1,20 +1,25 @@
 package com.swensonhe.domain.repository
 
+import com.swensonhe.common.Outcome
+import com.swensonhe.common.model.landingpage.cities_response
+import com.swensonhe.common.model.landingpage.current_city_weather_response
+import kotlinx.coroutines.flow.Flow
+
 interface LandingPageRepository {
 
-//    suspend fun getMLModels(
-//        networkStatus: Boolean,
-//        appName: String
-//    ): Flow<Outcome<landingModelResponse>>
-//
-//    suspend fun saveMlModelObjRequest(mlModelObj: MLmodelObject): Long
-//    suspend fun getAllLocalMlModelObjRequest(): Flow<Outcome<List<MLmodelObject>>>
-//    suspend fun isMLModelObjExists(model_version: String, model_id: String): Flow<Outcome<List<MLmodelObject>>>
-//    suspend fun deleteLocalMlModelObj(): Int
-//
-//
-//    suspend fun<T> saveLandingPageResponse(key: Preferences.Key<T>, value: T)
-//    suspend fun<T> getSavedLandingPageResponse(key: Preferences.Key<T>, defaultValue : T): Flow<T>
+
+    suspend fun getCityWeather(
+        key:String,
+        city_name:String
+    ): Flow<Outcome<current_city_weather_response>>
+
+    suspend fun getCitySearch(
+        key:String,
+        search_text:String
+    ): Flow<Outcome<cities_response>>
+
+
+
 
 
 
