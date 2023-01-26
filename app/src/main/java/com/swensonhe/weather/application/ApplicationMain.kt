@@ -2,7 +2,6 @@ package com.swensonhe.weather.application
 
 import android.app.Application
 
-import com.swensonhe.common.CommonConstants.APP_VERSION
 import com.swensonhe.weather.util.general.Utils.getAppVersion
 import com.swensonhe.weather.util.network.NetworkMonitoringUtil
 import dagger.hilt.android.HiltAndroidApp
@@ -14,8 +13,6 @@ class ApplicationMain: Application(){
     override fun onCreate() {
         super.onCreate()
 
-
-        APP_VERSION = getAppVersion(this)
 
         mNetworkMonitoringUtil = NetworkMonitoringUtil(this)
         mNetworkMonitoringUtil!!.checkNetworkState()

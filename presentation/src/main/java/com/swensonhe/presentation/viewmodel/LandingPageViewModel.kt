@@ -5,7 +5,6 @@ import com.swensonhe.presentation.base.BaseViewModel
 import javax.inject.Inject
 
 class LandingPageViewModel @Inject constructor(
-    private val GetMLModelsTask: GetMLModelsTask,
 
     ) : BaseViewModel() {
 

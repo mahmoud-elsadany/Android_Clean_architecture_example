@@ -35,17 +35,11 @@ class RemoteModule {
 
     }
 
-    @Provides
-    fun providesLoginService(retrofit: Retrofit): LoginService =
-        retrofit.create(LoginService::class.java)
 
     @Provides
     fun providesLandingPageService(retrofit: Retrofit): LandingPageService =
         retrofit.create(LandingPageService::class.java)
 
-    @Provides
-    fun providesTrialsService(retrofit: Retrofit): TrialsService =
-        retrofit.create(TrialsService::class.java)
 
     @Provides
     fun providesOkHttpClient(): OkHttpClient {
@@ -59,11 +53,7 @@ class RemoteModule {
             .writeTimeout(5, TimeUnit.MINUTES)
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
-                    .addHeader("Authorization", CommonConstants.TOKEN_VALUE)
-                    .addHeader("appVersion", CommonConstants.APP_VERSION)
-                    .addHeader("operatingSystem", "ANDROID")
                     .addHeader("Accept-Language","en")
-                    .addHeader("module", CommonConstants.CHOSEN_MODULE)
                     .build()
                 return@addInterceptor chain.proceed(request)
             }

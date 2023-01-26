@@ -18,11 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HostActivity : BaseActivity() {
-    private var handler: Handler? = null
-    private var r: Runnable? = null
+
     private lateinit var navController: NavController
     private lateinit var binding: ActivityHostBinding
-    var shutterWasClicked = MutableLiveData<Boolean>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,17 +30,8 @@ class HostActivity : BaseActivity() {
         //disble dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        handler = Handler()
-        r = Runnable {
-            Toast.makeText(
-                this,
-                "user is inactive from last 10 minutes",
-                Toast.LENGTH_SHORT
-            ).show()
 
-            //TODO navigate to login fragment
 
-        }
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.host_nav_graph) as NavHostFragment
         navController = navHostFragment.navController
@@ -62,37 +51,5 @@ class HostActivity : BaseActivity() {
         }
     }
 
-    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
-        val action: Int = event.action
-        return when (event.keyCode) {
-            KeyEvent.KEYCODE_VOLUME_UP -> {
-                if (action == KeyEvent.ACTION_DOWN) {
-                    shutterWasClicked.value = true
-                }
-                true
-            }
-            // Note: this case is never called
-            KeyEvent.KEYCODE_VOLUME_DOWN -> {
-                if (action == KeyEvent.ACTION_DOWN) {
-                    shutterWasClicked.value = true
-                }
-                true
-            }
-            else -> super.dispatchKeyEvent(event)
-        }
-    }
-
-
-
-
-    override fun onUserInteraction() {
-        super.onUserInteraction()
-
-        stopHandler()
-    }
-
-    private fun stopHandler() {
-        handler!!.removeCallbacks(r!!)
-    }
 
 }
