@@ -8,5 +8,7 @@
     <string name="friday">Friday</string>
     <string name="degree">\u00B0</string>
     <string name="fahrenheit">\u2109</string>
+    <string name="mph">mph</string>
     <string name="search">Search City</string>
+    <string name="percentage">%</string>
 </resources>

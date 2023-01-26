@@ -7,8 +7,10 @@ import android.content.pm.PackageManager
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.swensonhe.weather.R
+import java.text.SimpleDateFormat
 import java.util.*
 
 object Utils {
@@ -55,5 +57,21 @@ object Utils {
         val now = Calendar.getInstance()
         val year = now[Calendar.YEAR]
         return year.toString()
+    }
+
+    fun getCurrentTime(localtime_epoch:Long):String{
+        return SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(localtime_epoch*1000))
+    }
+
+    fun getCurrentDate(localtime_epoch:Long):String{
+        return SimpleDateFormat("EEEE, d MMM yyyy", Locale.getDefault()).format(Date(localtime_epoch*1000))
+    }
+
+    fun showHideView(view:View){
+        if (view.isVisible)
+            view.visibility = View.GONE
+        else
+            view.visibility = View.VISIBLE
+
     }
 }
