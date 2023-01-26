@@ -59,12 +59,12 @@ object Utils {
         return year.toString()
     }
 
-    fun getCurrentTime():String{
-        return SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date())
+    fun getCurrentTime(localtime_epoch:Long):String{
+        return SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date(localtime_epoch))
     }
 
-    fun getCurrentDate():String{
-        return SimpleDateFormat("EEEE, d MMM yyyy", Locale.getDefault()).format(Date())
+    fun getCurrentDate(localtime_epoch:Long):String{
+        return SimpleDateFormat("EEEE, d MMM yyyy", Locale.getDefault()).format(Date(localtime_epoch*1000))
     }
 
     fun showHideView(view:View){

@@ -30,6 +30,7 @@ android {
             dimension "default"
             versionNameSuffix ".dev"
             buildConfigField "String", "BASE_URL", base_url
+            buildConfigField "String", "WEATHER_API_KEY", weather_api_key
 
             manifestPlaceholders = [
                     appIcon     : "@mipmap/logo",
@@ -46,6 +47,7 @@ android {
             dimension "default"
             versionNameSuffix ".testing"
             buildConfigField "String", "BASE_URL", base_url
+            buildConfigField "String", "WEATHER_API_KEY", weather_api_key
 
             manifestPlaceholders = [
                     appIcon     : "@mipmap/logo",
@@ -58,6 +60,7 @@ android {
         staging {
             dimension "default"
             buildConfigField "String", "BASE_URL", base_url
+            buildConfigField "String", "WEATHER_API_KEY", weather_api_key
 
             manifestPlaceholders = [
                     appIcon     : "@mipmap/logo",

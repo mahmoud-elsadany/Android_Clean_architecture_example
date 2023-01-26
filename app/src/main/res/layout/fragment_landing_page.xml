@@ -104,7 +104,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/today_weather_iv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="85dp"
                         android:gravity="center"
                         android:src="@drawable/sunny" />
 
@@ -201,13 +201,22 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp">
 
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/today_weather_status_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:gravity="center"
+
+                            android:src="@drawable/sunny" />
+
+
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/today_weather_status_tv"
                             style="@style/regular_text_style"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableTop="@drawable/sunny"
                             android:gravity="center"
+                            android:layout_below="@+id/today_weather_status_iv"
                             android:textColor="@color/white"
                             android:textSize="12sp"
                             tools:text="82.4°/86°F" />
@@ -229,13 +238,19 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="45dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/tomorrow_weather_status_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:gravity="center"
+                            android:src="@drawable/sunny" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tomorrow_weather_status_tv"
                             style="@style/regular_text_style"
-                            android:layout_width="wrap_content"
+                            android:layout_below="@+id/tomorrow_weather_status_iv"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableTop="@drawable/sunny"
                             android:gravity="center"
                             android:text="82.4°/86°F"
                             android:textColor="@color/white"
@@ -258,12 +273,19 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content">
 
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/friday_weather_status_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:gravity="center"
+                            android:src="@drawable/sunny" />
+
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/friday_weather_status_tv"
                             style="@style/regular_text_style"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableTop="@drawable/sunny"
+                            android:layout_below="@+id/friday_weather_status_iv"
                             android:gravity="center"
                             android:textColor="@color/white"
                             android:textSize="12sp"
@@ -292,7 +314,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    tools:visibility="visible"
+                    tools:visibility="gone"
                     android:background="@drawable/search_layout_bg">
 
                     <androidx.appcompat.widget.AppCompatImageView
