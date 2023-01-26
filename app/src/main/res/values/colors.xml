@@ -11,4 +11,5 @@
     <color name="colorPrimaryDark">#19A04B</color>
 
     <color name="transparent">#00F4F4F4</color>
+    <color name="bg_gradint">#D4002762</color>
 </resources>
