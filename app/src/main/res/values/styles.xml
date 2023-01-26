@@ -9,10 +9,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="general_text_style">
+    <style name="bold_text_style">
+        <item name="android:fontFamily">@font/sfprodisplay_bold</item>
+    </style>
 
-<!--        <item name="android:fontFamily">@font/cairo</item>-->
-        <item name="android:textDirection">ltr</item>
+    <style name="regular_text_style">
+        <item name="android:fontFamily">@font/sfprodisplay_regular</item>
+    </style>
+
+    <style name="semibold_text_style">
+        <item name="android:fontFamily">@font/sfprodisplay_semibold</item>
     </style>
 
 

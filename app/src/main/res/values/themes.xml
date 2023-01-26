@@ -12,8 +12,9 @@
         <item name="colorSecondaryVariant">@color/colorAccent</item>
         <item name="colorOnSecondary">@color/colorAccent</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/bg_gradint</item>
         <item name="windowActionBar">false</item>
+
         <!-- Customize your theme here. -->
     </style>
 

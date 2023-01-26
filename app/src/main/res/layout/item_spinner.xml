@@ -1,10 +1,29 @@
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:ellipsize="end"
-    android:text="sdsd"
-    android:maxLines="1"
-    android:textAppearance="?attr/textAppearanceSubtitle1"
-    />
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/city_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        tools:text="Las Vegas"
+        style="@style/bold_text_style"
+        android:textColor="@color/font_color"
+        android:textSize="16sp"
+        />
+
+    <TextView
+        android:id="@+id/country_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        tools:text=" - Nevada"
+        style="@style/regular_text_style"
+        android:textColor="@color/font_color"
+        android:textSize="16sp"
+        />
+</LinearLayout>
+

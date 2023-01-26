@@ -1,20 +1,14 @@
 package com.swensonhe.weather.util.general
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.View
-import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.swensonhe.weather.R
-import com.swensonhe.weather.util.Constants.currentMLModelPath
-import java.io.File
 import java.util.*
 
 object Utils {
