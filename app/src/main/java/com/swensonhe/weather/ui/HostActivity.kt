@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.MutableLiveData
@@ -26,6 +27,10 @@ class HostActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHostBinding.inflate(layoutInflater)
+        // Hide status bar
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+// Show status bar
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(binding.root)
         //disble dark mode
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
