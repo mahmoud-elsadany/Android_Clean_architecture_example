@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -15,13 +16,15 @@ import com.swensonhe.weather.base.BaseFragment
 import com.swensonhe.presentation.factory.ViewModelFactory
 import com.swensonhe.presentation.viewmodel.LandingPageViewModel
 import com.swensonhe.weather.databinding.FragmentLandingPageBinding
+import com.swensonhe.weather.util.general.Utils
+import com.swensonhe.weather.util.general.Utils.showHideView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class LandingPageFragment : BaseFragment() {
+class LandingPageFragment : BaseFragment(),ICityClickListener {
     private lateinit var binding: FragmentLandingPageBinding
 
     @Inject
@@ -104,11 +107,56 @@ class LandingPageFragment : BaseFragment() {
         }
 
 
+        binding.todayDateTv.text = Utils.getCurrentDate()
+        binding.timeTv.text = Utils.getCurrentTime()
+
+        binding.searchIv.setOnClickListener {
+            showHideView(binding.searchLayout)
+            searching()
+        }
+
+        binding.backIv.setOnClickListener {
+            showHideView(binding.searchLayout)
+        }
+
+        binding.searchListCollapseRl.setOnClickListener {
+            showHideView(binding.searchListRv)
+        }
+        binding.clearTextIv.setOnClickListener {
+            binding.searchEt.setText("")
+        }
+
+
+    }
+
+    private fun searching(){
+        binding.searchEt.doOnTextChanged { text, start, before, count ->
+            if (!text.isNullOrEmpty()) {
+                binding.clearTextIv.visibility = View.VISIBLE
+
+                if(text.length >= 3){
+                    //do search
+
+                }
+
+            }else{
+                binding.clearTextIv.visibility = View.GONE
+            }
+
+        }
     }
 
 
+
+
     override fun onBackPressed(): Boolean {
+        requireActivity().finishAffinity()
         return false
+    }
+
+    override fun onCityClickListener(city: String) {
+        //do action to fetch city data
+
     }
 
 }
