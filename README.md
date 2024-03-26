@@ -20,5 +20,5 @@ This repository demonstrates the implementation of the Android Clean Architectur
 2. Open the project in Android Studio.
 3. Build and run the app.
 
-Feel free to explore the code and adapt it to your specific use case. Happy coding! 🚀
+Feel free to explore the code and adapt it to your specific use case. Happy coding! 
 
